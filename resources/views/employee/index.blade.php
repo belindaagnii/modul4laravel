@@ -51,24 +51,25 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Age</th>
+                        <th>positions</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($employees as $employee)
                     <tr>
-                        <td>Belinda</td>
-                        <td>Agni</td>
-                        <td>belindaagni14@gmail.com</td>
-                        <td>20</td>
+                        <td>{{ $employee->firstname }}</td>
+                        <td>{{ $employee->lastname }}</td>
+                        <td>{{ $employee->email }}</td>
+                        <td>{{ $employee->age }}</td>
+                        <td>{{ $employee->position_name }}</td>
                         <td>
                             <div class="d-flex">
-                                <a href="{{ route('employees.show', ['employee' => 1]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
-                                <a href="{{ route('employees.edit', ['employee' => 1]) }}" class="btn btn-outline-dark btn-sm me-2"><i
-
-                                    class="bi-pencil-square"></i></a>
+                                <a href="{{ route('employees.show', ['employee' => $employee->employee_id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
+                                <a href="{{ route('employees.edit', ['employee' => $employee->employee_id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
 
                                 <div>
-                                    <form action="{{ route('employees.destroy', ['employee' => 1]) }}" method="POST">
+                                    <form action="{{ route('employees.destroy', ['employee' => $employee->employee_id]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
@@ -77,52 +78,11 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Adzanil</td>
-                        <td>Rachmadhi</td>
-                        <td>adzanil.rachmadhi@gmail.com</td>
-                        <td>25</td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="{{ route('employees.show', ['employee' => 2]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
-                                <a href="{{ route('employees.edit', ['employee' => 2]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
-
-                                <div>
-                                    <form action="{{ route('employees.destroy', ['employee' => 2]) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Berlian</td>
-                        <td>Rahmy</td>
-                        <td>berlian.rahmy@gmail.com</td>
-                        <td>23</td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="{{ route('employees.show', ['employee' => 3]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
-                                <a href="{{ route('employees.edit',
-['employee' => 3]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
-
-<div>
-    <form action="{{ route('employees.destroy', ['employee' => 3]) }}" method="POST">
-        @csrf
-        @method('delete')
-        <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
-    </form>
-</div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-@vite('resources/js/app.js')
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @vite('resources/js/app.js')
 </body>
 </html>
