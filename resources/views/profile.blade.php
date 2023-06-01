@@ -8,7 +8,12 @@
     @vite('resources/sass/app.scss')
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    @extends('layouts.app')
+
+@section('content')
+        @include('default')
+@endsection
+    {{-- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="container">
             <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
 
@@ -29,7 +34,7 @@
                 <a href="{{ route('profile') }}" class="btn btn-outline-light my-2 ms-md-auto"><i class="bi-person-circle me-1"></i> My Profile</a>
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
     <div class="container mt-4">
         <h4>{{ $pageTitle }}</h4>

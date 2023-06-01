@@ -8,7 +8,7 @@
     @vite('resources/sass/app.scss')
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    {{-- <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="container">
             <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
 
@@ -29,7 +29,11 @@
                 <a href="{{ route('profile') }}" class="btn btn-outline-light my-2 ms-md-auto"><i class="bi-person-circle me-1"></i> My Profile</a>
             </div>
         </div>
-    </nav>
+    </nav> --}}
+    
+    @extends('layouts.app')
+
+@section('content')
 
     <div class="container mt-4">
         <div class="row mb-0">
@@ -52,7 +56,7 @@
                         <th>Email</th>
                         <th>Age</th>
                         <th>positions</th>
-                        <th></th>
+                        <th>action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,9 +66,36 @@
                         <td>{{ $employee->lastname }}</td>
                         <td>{{ $employee->email }}</td>
                         <td>{{ $employee->age }}</td>
-                        <td>{{ $employee->position_name }}</td>
+                        <td>{{ $employee->position->name }}</td>
                         <td>
-                            <div class="d-flex">
+                    </tr>
+                    @endforeach
+                            {{-- ACTIONS SECTION --}}
+                <div class="d-flex">
+                    <a href="{{ route('employees.show', ['employee' => $employee->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
+                    <a href="{{ route('employees.edit', ['employee' => $employee->id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
+
+                    <div>
+                        <form action="{{ route('employees.destroy', ['employee' => $employee->id]) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-outline-dark btn-sm me-2"><i class="bi-trash"></i></button>
+                        </form>
+                    </div>
+                </div>
+@endsection
+            </td>
+</tbody>
+
+
+
+
+
+
+
+
+
+                            {{-- <div class="d-flex">
                                 <a href="{{ route('employees.show', ['employee' => $employee->employee_id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-person-lines-fill"></i></a>
                                 <a href="{{ route('employees.edit', ['employee' => $employee->employee_id]) }}" class="btn btn-outline-dark btn-sm me-2"><i class="bi-pencil-square"></i></a>
 
@@ -85,4 +116,4 @@
     </div>
     @vite('resources/js/app.js')
 </body>
-</html>
+</html> --}}
